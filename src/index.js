@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import FootballField from './components/FootballField/footballField';
 import reportWebVitals from './reportWebVitals';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import FootballField from './components/FootballField/footballField';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
       <DndProvider backend={HTML5Backend}>
