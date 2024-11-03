@@ -4,14 +4,7 @@ import './footballField.css';
 import Piece from '../Piece/piece';
 
 export default function FootballField() {
-  const [players, setPlayers] = useState([
-    { name: 'Player 1', position: { x: 100, y: 200 }, color: 'blue' },
-    { name: 'Player 2', position: { x: 150, y: 250 }, color: 'blue'},
-    { name: 'Player 3', position: { x: 300, y: 300 }, color: 'blue' },
-    { name: 'Player 4', position: { x: 350, y: 350 }, color: 'blue' },
-    { name: 'Player 5', position: { x: 400, y: 450 }, color: 'red' },
-    // Add more players as needed
-  ]);
+  const [players, setPlayers] = useState([]);
 
   const [, drop] = useDrop(() => ({
     accept: 'piece',
@@ -33,6 +26,15 @@ export default function FootballField() {
     },
   }), [players]);
 
+  const addPlayer = () => {
+    const newPlayer = {
+      name: `Player ${players.length + 1}`, 
+      position: { x: 50, y: 50 },           
+      color: players.length % 2 === 0 ? 'blue' : 'red'
+    };
+    setPlayers([...players, newPlayer]);
+  };
+
   return (
     <div className="football-field" ref={drop}>
       {players.map((player, index) => (
@@ -43,6 +45,10 @@ export default function FootballField() {
           color={player.color} 
         />
       ))}
+
+      <button onClick={addPlayer} className='add-player-button'>Agregar jugador</button>
+      
     </div>
+
   );
 }
