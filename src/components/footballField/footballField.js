@@ -35,19 +35,31 @@ export default function FootballField() {
     setPlayers([...players, newPlayer]);
   };
 
-  return (
-    <div className="football-field" ref={drop}>
-      {players.map((player, index) => (
-        <Piece 
-          key={index} 
-          name={player.name} 
-          position={player.position}
-          color={player.color} 
-        />
-      ))}
+  const deletePlayers = () => {
+    if (window.confirm('Are you sure you want to delete all players?')) {
+      setPlayers([]);
+    }
+  };
 
-      <button onClick={addPlayer} className='add-player-button'>Agregar jugador</button>
-      
+  return (
+    <div className="football-field-container">
+      <h1 className="title">Football Field</h1>
+      <div ref={drop} className="football-field">
+        {players.map((player, index) => (
+          <Piece 
+            key={index} 
+            name={player.name} 
+            position={player.position} 
+            color={player.color} 
+          />
+        ))}
+      </div>
+
+      <div className="buttons-container">
+        <button onClick={addPlayer} className="add-player-button">Add Player</button>
+        <button onClick={deletePlayers} className="delete-all-players-button">Delete Players</button>
+      </div>
+
     </div>
 
   );
